@@ -1,7 +1,14 @@
 import axios from "axios";
 
-export default {
-    genEmployees: function() {
-      return axios.get("https://randomuser.me/api/");
-    }
-  };
+const genEmpList = {
+  genEmployees: function() {
+    return axios.get("https://randomuser.me/api/?results=100");
+  }
+}
+
+ export default genEmpList;
+//{
+//     genEmployees: function() {
+//       return axios.get("https://randomuser.me/api/?results=100");
+//     }
+//   };

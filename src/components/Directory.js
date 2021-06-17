@@ -1,5 +1,6 @@
 import React from "react";
 import API from "../utils/API";
+import Employee from "./Employee";
 
 class Directory extends React.Component {
     state = {
@@ -11,10 +12,10 @@ class Directory extends React.Component {
 
     componentDidMount = () => {
         API.genEmployees()
-            .then(res => this.setState({ empList: res.data }))
+            .then(res => this.setState({ empList: res.data.results }))
+            // .then(res => console.log(this.state.empList))
             .catch(err => console.log(err));
     }
-
 
     handleSearch = (event) => {
         event.preventDefault();
@@ -34,11 +35,9 @@ class Directory extends React.Component {
                     </form>
                 </div>
                 <div className="emp-list">
-                    <ul>
-                        <li>emp list</li>
-                    </ul>
+                    <Employee empList = {this.state.empList} />
 
-                    {this.state.empList}
+                    {/* {this.state.empList} */}
 
                 </div>
 
