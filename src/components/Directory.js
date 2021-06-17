@@ -6,6 +6,16 @@ class Directory extends React.Component {
         sortEmp: [],
         search: "",
         sorted:false
+    };
+
+    handleSearch = () => {
+        
+    }
+
+    render() {
+        return (
+            <h1>TEST</h1>
+        )
     }
 }
 
