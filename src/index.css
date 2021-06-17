@@ -11,3 +11,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h1 {
+  color: #05386B;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  background-color: #5cdb95;
+  padding: 30px;
+}
+
+span {
+  text-decoration: underline;
+}
+
+form {
+  text-align: center;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  color: #05386B;
+  background-color: #EDF5E1;
+  padding: 20px;
+  border-radius: 15px;
+  border-color: #05386B;
+  border-style: solid;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+}

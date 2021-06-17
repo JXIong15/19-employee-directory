@@ -15,15 +15,16 @@ class Directory extends React.Component {
 
     render() {
         return (
-            <div className="search">
-                <h1>Employee Directory</h1>
-                <form>
+            <div className="directory">
+                <h1>📖 <span>Employee Directory</span></h1>
+              <div className="search">
+                <form className="row col-sm-12 col-md-6">
                     <p>Search for an employee by name or email.</p>
-                    <input type="text" placeholder="Search for Employee" />
+                    <input type="text" placeholder="Employee" />
                     <input type="submit" value="Search" onClick={this.handleSearch} />
 
                 </form>
-
+                </div>
                 <div className="emp-list">
                     <ul>
                         <li>emp list</li>
