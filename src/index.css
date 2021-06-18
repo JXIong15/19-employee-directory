@@ -64,4 +64,15 @@ table {
   margin-right: auto;
   width: 90vw;
   text-align: center;
+  border: solid;
+}
+
+table tr th {
+  border-color: #379683;
+}
+
+form .submit {
+  background-color: #379683;
+  color: #EDF5E1;
+  margin-top: 5px;
 }
