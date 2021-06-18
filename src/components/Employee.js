@@ -2,13 +2,15 @@ import React from "react";
 
 function Employee(props) {
   return (
-    <div>
-      {/* <img src={props.picture} alt={props.lastName}></img> */}
-        <h3>{props.firstName} {props.lastName}</h3>
-        <h3>{props.email}</h3>
-        <h3>{props.cell}</h3>
-        <h3>{props.address}</h3>
-    </div>
+    <tr>
+      <td>
+        <img src={props.picture} alt="profile picture"></img>
+      </td>
+      <td>{props.firstName} {props.lastName} name</td>
+      <td>{props.email}</td>
+      <td>{props.cell}</td>
+      <td>{props.address}</td>
+    </tr>
   );
 }
 
