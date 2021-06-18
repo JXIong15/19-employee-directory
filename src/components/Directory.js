@@ -28,7 +28,7 @@ class Directory extends React.Component {
     render() {
         return (
             <div className="directory">
-                <h1>📖 <span>Employee Directory</span></h1>
+                <h1><span>📖Employee Directory</span></h1>
                 <Search handleSearch={this.handleSearch} />
                 <Table empList={this.state.empList} />
                 <Footer />

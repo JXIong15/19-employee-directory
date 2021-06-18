@@ -1,5 +1,5 @@
 import React from "react";
-import Employee from "./Employee";
+import EmployeeDB from "./EmployeeDB";
 
 function Table(props) {
   return (
@@ -16,7 +16,7 @@ function Table(props) {
 
       <tbody>
         {props.empList.map((emp) => {
-          return <Employee
+          return <EmployeeDB
             key={emp.id.value}
             fullName={ emp.name.first  + emp.name.last }
             firstName = { emp.name.first }

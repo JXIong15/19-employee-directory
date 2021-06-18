@@ -20,7 +20,10 @@ h1 {
 }
 
 span {
-  text-decoration: underline;
+  background-color: #05386B;
+  color: #EDF5E1;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 form {
@@ -70,4 +73,13 @@ form .submit {
   background-color: #379683;
   color: #EDF5E1;
   margin-top: 5px;
+}
+
+tbody {
+  background-color: #EDF5E1;
+  color: #379683;
+}
+
+img {
+  padding:10px;
 }
