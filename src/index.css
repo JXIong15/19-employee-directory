@@ -64,11 +64,6 @@ table {
   margin-right: auto;
   width: 90vw;
   text-align: center;
-  border: solid;
-}
-
-table tr th {
-  border-color: #379683;
 }
 
 form .submit {

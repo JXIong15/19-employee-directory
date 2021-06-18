@@ -1,15 +1,16 @@
 import React from "react";
 
 function Employee(props) {
+  console.log("Emp")
   return (
-    <tr>
+    <tr key={props.key}>
       <td>
-        <img src={props.picture} alt="profile picture"></img>
+        <img src={props.picture} alt={ props.fullName + "'s picture"}></img>pic
       </td>
       <td>{props.firstName} {props.lastName} name</td>
-      <td>{props.email}</td>
-      <td>{props.cell}</td>
-      <td>{props.address}</td>
+      <td>{props.email}email</td>
+      <td>{props.cell}cell</td>
+      <td>{props.address}addy</td>
     </tr>
   );
 }

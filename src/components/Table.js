@@ -1,8 +1,7 @@
 import React from "react";
-import Employee from "./Table";
+import Employee from "./Employee";
 
 function Table(props) {
-  
   return (
     <table>
       <thead>
@@ -19,18 +18,19 @@ function Table(props) {
         {props.empList.map((emp) => {
           <Employee
             key={emp.id.value}
-            firstName={emp.name.first}
-            lastName={emp.name.last}
-            email={emp.email}
-            cell={emp.cell}
-            picture={emp.picture.thumbnail}
-            address={
-              emp.location.street.number + " " +
+            fullName={ emp.name.first  + emp.name.last }
+            firstName = { emp.name.first }
+            lastName = { emp.name.last }
+            email = { emp.email }
+            cell = { emp.cell }
+            picture = { emp.picture.thumbnail }
+            address = {
+            emp.location.street.number + " " +
               emp.location.street.name + ", " +
               emp.location.city + ", " +
               emp.location.state + " " +
               emp.location.postcode
-            }
+          }
           />
         })}
       </tbody>

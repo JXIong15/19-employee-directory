@@ -15,7 +15,7 @@ class Directory extends React.Component {
     componentDidMount = () => {
         API.genEmployees()
             .then(res => this.setState({ empList: res.data.results }))
-            .then(res => console.log(this.state.empList))
+            // .then(res => console.log(this.state.empList))
             .catch(err => console.log(err));
     }
 
