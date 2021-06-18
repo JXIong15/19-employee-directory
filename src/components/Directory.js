@@ -1,7 +1,8 @@
 import React from "react";
 import API from "../utils/API";
-import Employees from "./Employees";
+import Table from "./Table";
 import Search from "./Search";
+import Footer from "./Footer";
 
 class Directory extends React.Component {
     state = {
@@ -28,26 +29,8 @@ class Directory extends React.Component {
             <div className="directory">
                 <h1>📖 <span>Employee Directory</span></h1>
                 <Search handleSearch={this.handleSearch} />
-
-                {this.state.empList.map((emp) => {
-                    <Employees 
-                        key = {emp.id.value}
-                        firstName = {emp.name.first} 
-                        lastName = {emp.name.last} 
-                        email = {emp.email}
-                        cell = {emp.cell}
-                        picture = {emp.picture.thumbnail}
-                        address = {
-                            emp.location.street.number + " " +
-                            emp.location.street.name + ", " +
-                            emp.location.city + ", " +
-                            emp.location.state + " " +
-                            emp.location.postcode
-                        }
-                    />
-
-
-                })}
+                <Table empList={this.state.empList} />
+                <Footer />
             </div>
         )
     }

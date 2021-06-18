@@ -38,3 +38,20 @@ form {
   display: flex;
   justify-content: center;
 }
+
+footer {
+  color: #05386B;
+  text-align: center;
+  font-size: x-small;
+
+}
+
+footer a {
+  color: #05386B;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer a:hover {
+  color: #EDF5E1
+}
