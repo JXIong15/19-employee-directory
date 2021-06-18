@@ -13,7 +13,7 @@ class Directory extends React.Component {
     componentDidMount = () => {
         API.genEmployees()
             .then(res => this.setState({ empList: res.data.results }))
-            // .then(res => console.log(this.state.empList))
+            .then(res => console.log(this.state.empList[0]))
             .catch(err => console.log(err));
     }
 
@@ -34,13 +34,26 @@ class Directory extends React.Component {
                         <input type="submit" value="Search" onClick={this.handleSearch} />
                     </form>
                 </div>
-                <div className="emp-list">
-                    <Employee empList = {this.state.empList} />
 
-                    {/* {this.state.empList} */}
+                {this.state.empList.map((emp) => {
+                    <Employee 
+                        id = {emp.id.value}
+                        firstName = {emp.name.first} 
+                        lastName = {emp.name.last} 
+                        email = {emp.email}
+                        cell = {emp.cell}
+                        picture = {emp.picture}
+                        address = {
+                            emp.location.street.number + " " +
+                            emp.location.street.name + ", " +
+                            emp.location.city + ", " +
+                            emp.location.state + " " +
+                            emp.location.postcode
+                        }
+                    />
 
-                </div>
 
+                })}
             </div>
         )
     }
