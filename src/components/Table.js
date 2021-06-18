@@ -7,11 +7,21 @@ function Table(props) {
       <thead>
         <tr>
           <th>Picture</th>
-          <th className="sortFunc" onClick={props.sortAlpha}>First</th>
-          <th>Last</th>
-          <th>Email</th>
-          <th>Phone Number</th>
-          <th>Address</th>
+          <th className="sortFunc">
+            <span onClick={() => props.sortBy("first")}>First</span>
+          </th>
+          <th className="sortFunc">
+            <span onClick={() => props.sortBy("last")}>Last</span>
+          </th>
+          <th className="sortFunc">
+            <span onClick={() => props.sortBy("email")}>Email</span>
+          </th>
+          <th>
+            <span onClick={() => props.sortBy("phone")}>Phone Number</span>
+          </th>
+          <th>
+            <span onClick={() => props.sortBy("address")}>Address</span>
+          </th>
         </tr>
       </thead>
 

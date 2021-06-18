@@ -15,23 +15,12 @@ class Directory extends React.Component {
     componentDidMount = () => {
         API.genEmployees()
             .then(res => this.setState({ empList: res.data.results }))
-            // .then(res => console.log(this.state.empList))
             .catch(err => console.log(err));
     }
 
-    // handleInputChange = event => {
-    //     // Getting the value and name of the input which triggered the change
-    //     const { input, value } = event.target;
+ 
 
-    //     // Updating the input's state
-    //     this.setState({
-    //       [input]: value
-    //     });
-    //     console.log(value)
-    //     console.log(input)
-    //   };
-
-
+// DOES NOT WORK
     handleSearch = (event) => {
         event.preventDefault();
         console.log("Search");
@@ -53,8 +42,13 @@ class Directory extends React.Component {
         this.setState({ search: "" });
     }
 
-    sortAlpha = (event) => {
+    sortBy = () => {
         console.log("sort")
+
+
+
+console.log(this.state.empList)
+
     }
 
     render() {
@@ -63,7 +57,7 @@ class Directory extends React.Component {
                 <h1><span>📖Employee Directory</span></h1>
                 <Search
                     handleSearch={this.handleSearch}
-                    handleInputChange={this.handleInputChange}
+                    sortBy={this.sortBy}
                     search={this.state.search}
                 />
                 <Table 
