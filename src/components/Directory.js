@@ -1,6 +1,7 @@
 import React from "react";
 import API from "../utils/API";
-import Employee from "./Employee";
+import Employees from "./Employees";
+import Search from "./Search";
 
 class Directory extends React.Component {
     state = {
@@ -13,7 +14,6 @@ class Directory extends React.Component {
     componentDidMount = () => {
         API.genEmployees()
             .then(res => this.setState({ empList: res.data.results }))
-            .then(res => console.log(this.state.empList[0]))
             .catch(err => console.log(err));
     }
 
@@ -27,22 +27,16 @@ class Directory extends React.Component {
         return (
             <div className="directory">
                 <h1>📖 <span>Employee Directory</span></h1>
-                <div className="search">
-                    <form className="row col-sm-12 col-md-6">
-                        <p>Search for an employee by name or email.</p>
-                        <input type="text" placeholder="Employee" />
-                        <input type="submit" value="Search" onClick={this.handleSearch} />
-                    </form>
-                </div>
+                <Search handleSearch={this.handleSearch} />
 
                 {this.state.empList.map((emp) => {
-                    <Employee 
-                        id = {emp.id.value}
+                    <Employees 
+                        key = {emp.id.value}
                         firstName = {emp.name.first} 
                         lastName = {emp.name.last} 
                         email = {emp.email}
                         cell = {emp.cell}
-                        picture = {emp.picture}
+                        picture = {emp.picture.thumbnail}
                         address = {
                             emp.location.street.number + " " +
                             emp.location.street.name + ", " +
