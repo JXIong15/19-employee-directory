@@ -16,7 +16,7 @@ function Table(props) {
 
       <tbody>
         {props.empList.map((emp) => {
-          <Employee
+          return <Employee
             key={emp.id.value}
             fullName={ emp.name.first  + emp.name.last }
             firstName = { emp.name.first }
