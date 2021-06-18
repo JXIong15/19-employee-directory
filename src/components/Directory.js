@@ -7,9 +7,9 @@ import Footer from "./Footer";
 class Directory extends React.Component {
     state = {
         empList: [],
-        sortEmp: [],
+        filterEmp: [],
         search: "",
-        sorted: false
+        filtered: false
     };
 
     componentDidMount = () => {
@@ -19,18 +19,57 @@ class Directory extends React.Component {
             .catch(err => console.log(err));
     }
 
+    // handleInputChange = event => {
+    //     // Getting the value and name of the input which triggered the change
+    //     const { input, value } = event.target;
+
+    //     // Updating the input's state
+    //     this.setState({
+    //       [input]: value
+    //     });
+    //     console.log(value)
+    //     console.log(input)
+    //   };
+
+
     handleSearch = (event) => {
         event.preventDefault();
         console.log("Search");
+        this.setState({ search: event.target.value }, () => {
+            let { empList, search } = this.state;
+            let filterEmp = empList.filter((filtered) => {
+                return (
+                    filtered.name.first.toLowerCase().includes(search.toLowerCase()) ||
+                    filtered.name.last.toLowerCase().includes(search.toLowerCase()) ||
+                    filtered.email.toLowerCase().includes(search.toLowerCase())
+                );
+            });
+            this.setState({ filterEmp });
+            console.log(filterEmp);
+            this.setState({ filtered: true })
+        })
 
+        console.log(this.state.search);
+        this.setState({ search: "" });
+    }
+
+    sortAlpha = (event) => {
+        console.log("sort")
     }
 
     render() {
         return (
             <div className="directory">
                 <h1><span>📖Employee Directory</span></h1>
-                <Search handleSearch={this.handleSearch} />
-                <Table empList={this.state.empList} />
+                <Search
+                    handleSearch={this.handleSearch}
+                    handleInputChange={this.handleInputChange}
+                    search={this.state.search}
+                />
+                <Table 
+                    empList={this.state.empList} 
+                    sortAlpha={this.sortAlpha}
+                />
                 <Footer />
             </div>
         )

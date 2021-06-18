@@ -83,3 +83,7 @@ tbody {
 img {
   padding:10px;
 }
+
+.sortFunc:hover {
+  text-decoration: underline;
+}

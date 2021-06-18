@@ -6,7 +6,8 @@ function EmployeeDB(props) {
       <td>
         <img src={props.picture} alt={ props.fullName + "'s picture"}></img>
       </td>
-      <td>{props.firstName} {props.lastName}</td>
+      <td>{props.firstName}</td>
+      <td>{props.lastName}</td>
       <td>{props.email}</td>
       <td>{props.cell}</td>
       <td>{props.address}</td>

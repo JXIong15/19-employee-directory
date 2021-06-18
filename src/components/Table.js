@@ -7,7 +7,8 @@ function Table(props) {
       <thead>
         <tr>
           <th>Picture</th>
-          <th>Name</th>
+          <th className="sortFunc" onClick={props.sortAlpha}>First</th>
+          <th>Last</th>
           <th>Email</th>
           <th>Phone Number</th>
           <th>Address</th>
