@@ -9,7 +9,13 @@ class Directory extends React.Component {
         empList: [],
         filterEmp: [],
         search: "",
-        filtered: false
+        categories: [
+            {name: "first"},
+            {name: "last"},
+            {name: "email"},
+            {name: "phone"},
+            {name: "address"}
+        ]
     };
 
     componentDidMount = () => {
@@ -18,9 +24,9 @@ class Directory extends React.Component {
             .catch(err => console.log(err));
     }
 
- 
 
-// DOES NOT WORK
+
+    // DOES NOT WORK
     handleSearch = (event) => {
         event.preventDefault();
         console.log("Search");
@@ -35,7 +41,6 @@ class Directory extends React.Component {
             });
             this.setState({ filterEmp });
             console.log(filterEmp);
-            this.setState({ filtered: true })
         })
 
         console.log(this.state.search);
@@ -47,7 +52,7 @@ class Directory extends React.Component {
 
 
 
-console.log(this.state.empList)
+        console.log(this.state.empList)
 
     }
 
@@ -60,8 +65,8 @@ console.log(this.state.empList)
                     sortBy={this.sortBy}
                     search={this.state.search}
                 />
-                <Table 
-                    empList={this.state.empList} 
+                <Table
+                    empList={this.state.empList}
                     sortAlpha={this.sortAlpha}
                 />
                 <Footer />
