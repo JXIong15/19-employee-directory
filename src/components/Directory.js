@@ -18,40 +18,43 @@ class Directory extends React.Component {
             .catch(err => console.log(err));
     }
 
-// VALUE AND SEARCH ARE DIFF BY 1 INPUT
+    // VALUE AND SEARCH ARE DIFF BY 1 INPUT. NEED FILTERED LIST TO DISPLAY
     handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
         const value = event.target.value;
         this.setState({ search: value });
         // console.log(value)
-        // console.log(this.state.search)
+        console.log("State: " + this.state.search)
+
+        console.log("Value: " + value)
+
+
+        let { empList, search } = this.state;
+        let filterEmp = empList.filter((filtered) => {
+            return (
+                filtered.name.first.toLowerCase().includes(search.toLowerCase()) ||
+                filtered.name.last.toLowerCase().includes(search.toLowerCase()) ||
+                filtered.email.toLowerCase().includes(search.toLowerCase())
+            );
+        });
+
+        if (filterEmp === []) {
+            alert("No employee matching that name or email.")
+        } else {        
+            this.setState({ filterEmp: filterEmp });
+        }
+        // console.log(this.state.filterEmp);
+
+
+
     };
 
-
-    // DOES NOT WORK. FILTER IS BEHIND BY 1 SEARCH TOO, LIKE FUNC ABOVE
-    handleSearch = (event) => {
-        event.preventDefault();
-        const value = event.target.value;
-        console.log("Value: " + value)
-        // this.setState({ search: event.target.value }, () => {
-            let { empList, search } = this.state;
-            console.log(search)
-            let filterEmp = empList.filter((filtered) => {
-                return (
-                    filtered.name.first.toLowerCase().includes(search.toLowerCase()) ||
-                    filtered.name.last.toLowerCase().includes(search.toLowerCase()) ||
-                    filtered.email.toLowerCase().includes(search.toLowerCase())
-                );
-            });
-            this.setState({ filterEmp:filterEmp });
-            console.log(this.state.filterEmp);
-        // })
-
-        console.log(this.state.search);
+    clearSearch = () => {
         this.setState({ search: "" });
+
     }
 
-    // allows dor ascending or descending list order
+    // allows for ascending or descending list order
     order = (x, y) => {
         if (!(this.state.sortDirection === "asc")) {
             this.setState({ sortDirection: "asc" });
@@ -85,13 +88,13 @@ class Directory extends React.Component {
             <div className="directory">
                 <h1><span>📖Employee Directory</span></h1>
                 <Search
-                    handleInputChange = {this.handleInputChange}
-                    handleSearch = {this.handleSearch}
-                    search = {this.state.search}
+                    handleInputChange={this.handleInputChange}
+                    search={this.state.search}
+                    clearSearch={this.clearSearch}
                 />
                 <Table
-                    empList = {this.state.empList}
-                    sortBy = {this.sortBy}
+                    empList={this.state.empList}
+                    sortBy={this.sortBy}
                 />
                 <Footer />
             </div>
