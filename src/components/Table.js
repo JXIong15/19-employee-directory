@@ -13,14 +13,14 @@ function Table(props) {
           <th className="sortFunc">
             <span onClick={() => props.sortBy("last")}>Last</span>
           </th>
-          <th className="sortFunc">
-            <span onClick={() => props.sortBy("email")}>Email</span>
+          <th className="sortFunc">Email
+            {/* <span onClick={() => props.sortBy("email")}>Email</span> */}
           </th>
-          <th>
-            <span onClick={() => props.sortBy("phone")}>Phone Number</span>
+          <th>Phone
+            {/* <span onClick={() => props.sortBy("phone")}>Phone Number</span> */}
           </th>
-          <th>
-            <span onClick={() => props.sortBy("address")}>Address</span>
+          <th>Address
+            {/* <span onClick={() => props.sortBy("address")}>Address</span> */}
           </th>
         </tr>
       </thead>

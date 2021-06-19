@@ -49,10 +49,12 @@ class Directory extends React.Component {
 
     sortBy = () => {
         console.log("sort")
+        let sortEmp = this.state.empList;
+        sortEmp.sort((a,b) => {
+            return (a.name.first > b.name.first ? 1 : -1)
+        })
 
-
-
-        console.log(this.state.empList)
+        this.setState({ empList: sortEmp })
 
     }
 
@@ -62,12 +64,12 @@ class Directory extends React.Component {
                 <h1><span>📖Employee Directory</span></h1>
                 <Search
                     handleSearch={this.handleSearch}
-                    sortBy={this.sortBy}
                     search={this.state.search}
                 />
                 <Table
                     empList={this.state.empList}
-                    sortAlpha={this.sortAlpha}
+                    // sortAlpha={this.sortAlpha}
+                    sortBy={this.sortBy}
                 />
                 <Footer />
             </div>
