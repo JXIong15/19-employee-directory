@@ -8,7 +8,13 @@ class Directory extends React.Component {
     state = {
         empList: [],
         filterEmp: [],
-        search: ""
+        search: "",
+
+        firstAsc: false,
+        lastAsc: false,
+        emailAsc: false,
+        phoneAsc: false,
+        addressAsc: false
     };
 
     componentDidMount = () => {
@@ -40,17 +46,45 @@ class Directory extends React.Component {
         this.setState({ search: "" });
     }
 
+
+    order = (x,y, category) => {
+        if (!category) {
+            this.setState({ category: true});
+            return (x > y ? 1 : -1)
+        } else {
+            this.setState({ category: false});
+            return (x < y ? 1 : -1)
+        }
+    }
+
+
     sortBy = (key) => {
-        console.log("sort")
         let sortEmp = this.state.empList;
 
         // to sort by certain categories
         sortEmp.sort((a,b) => {
+            if (!this.state.isAsc) {
             switch (key) {
-                case "first": return (a.name.first > b.name.first ? 1 : -1);
-                case "last": return (a.name.last > b.name.last ? 1 : -1);
+                case "first": return (this.order(a.name.first, b.name.first, this.state.firstAsc))
+                // (a.name.first > b.name.first ? 1 : -1);
+                case "last": return (a.name.last < b.name.last ? 1 : -1);
+                case "email": return (a.email > b.email ? 1 : -1);
+                case "phone": return (a.cell > b.cell ? 1 : -1);
+                case "address": return (a.location.street.number > b.location.street.number ? 1 : -1);
+                default: return this.state.empList;
             }
+        } else {
+
+        }
         })
+
+        if (!this.state.isAsc) {
+            this.setState({ isAsc: true})
+            console.log("asc")
+        } else {
+            this.setState({ isAsc: false})
+            console.log("dec")
+        };
 
         this.setState({ empList: sortEmp })
 
