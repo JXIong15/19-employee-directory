@@ -80,10 +80,13 @@ tbody {
   color: #379683;
 }
 
-img {
+tbody tr td {
   padding:10px;
+  border: solid;
+  border-width: 2px;
 }
 
 .sortFunc:hover {
   text-decoration: underline;
+  cursor: pointer;
 }

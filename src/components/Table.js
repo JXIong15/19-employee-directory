@@ -16,10 +16,10 @@ function Table(props) {
           <th className="sortFunc">
             <span onClick={() => props.sortBy("email")}>Email</span>
           </th>
-          <th>
+          <th className="sortFunc">
             <span onClick={() => props.sortBy("phone")}>Phone Number</span>
           </th>
-          <th>
+          <th className="sortFunc">
             <span onClick={() => props.sortBy("address")}>Address</span>
           </th>
         </tr>
