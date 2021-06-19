@@ -14,7 +14,7 @@ function Search(props) {
         <input 
           className="submit" 
           type="submit" 
-          value="Search" 
+          value={props.search} 
           onClick={props.handleSearch} 
         />
       </form>
