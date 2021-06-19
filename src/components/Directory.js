@@ -9,12 +9,7 @@ class Directory extends React.Component {
         empList: [],
         filterEmp: [],
         search: "",
-
-        firstAsc: false,
-        lastAsc: false,
-        emailAsc: false,
-        phoneAsc: false,
-        addressAsc: false
+        sortDirection: ""
     };
 
     componentDidMount = () => {
@@ -46,13 +41,13 @@ class Directory extends React.Component {
         this.setState({ search: "" });
     }
 
-
-    order = (x,y, category) => {
-        if (!category) {
-            this.setState({ category: true});
+    // allows dor ascending or descending list order
+    order = (x,y) => {
+        if (!(this.state.sortDirection === "asc")) {
+            this.setState({ sortDirection: "asc"});
             return (x > y ? 1 : -1)
         } else {
-            this.setState({ category: false});
+            this.setState({ sortDirection: "desc"});
             return (x < y ? 1 : -1)
         }
     }
@@ -63,28 +58,15 @@ class Directory extends React.Component {
 
         // to sort by certain categories
         sortEmp.sort((a,b) => {
-            if (!this.state.isAsc) {
             switch (key) {
-                case "first": return (this.order(a.name.first, b.name.first, this.state.firstAsc))
-                // (a.name.first > b.name.first ? 1 : -1);
-                case "last": return (a.name.last < b.name.last ? 1 : -1);
-                case "email": return (a.email > b.email ? 1 : -1);
-                case "phone": return (a.cell > b.cell ? 1 : -1);
-                case "address": return (a.location.street.number > b.location.street.number ? 1 : -1);
+                case "first": return (this.order(a.name.first, b.name.first))
+                case "last": return (this.order(a.name.last, b.name.last));
+                case "email": return (this.order(a.email, b.email));
+                case "phone": return (this.order(a.cell, b.cell));
+                case "address": return (this.order(a.location.street.number, b.location.street.number));
                 default: return this.state.empList;
             }
-        } else {
-
-        }
         })
-
-        if (!this.state.isAsc) {
-            this.setState({ isAsc: true})
-            console.log("asc")
-        } else {
-            this.setState({ isAsc: false})
-            console.log("dec")
-        };
 
         this.setState({ empList: sortEmp })
 
