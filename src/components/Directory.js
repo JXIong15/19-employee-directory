@@ -20,21 +20,13 @@ class Directory extends React.Component {
             .catch(err => console.log(err));
     }
 
-
     handleInputChange = event => {
-        // Getting the value and name of the input which triggered the change
         const searchTerm = event.target.value;
-        // this.setState({ search: value });
 
-        console.log("Value: " + searchTerm)
-        console.log("-------------")
-
-
+        // filters for a list of employees that match the input value
         let filterEmp = this.state.empList.filter((filtered) => {
-
             let values = Object.values(filtered).join("").toLowerCase();
             return values.indexOf(searchTerm.toLowerCase()) !== -1
-
         });
         this.setState({ filterEmp: filterEmp });
     };
@@ -71,9 +63,7 @@ class Directory extends React.Component {
         return (
             <div className="directory">
                 <h1><span>📖Employee Directory</span></h1>
-                <Search
-                    handleInputChange={this.handleInputChange}
-                />
+                <Search handleInputChange={this.handleInputChange} />
                 <Table
                     empList={this.state.filterEmp}
                     sortBy={this.sortBy}

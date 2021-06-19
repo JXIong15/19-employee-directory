@@ -69,18 +69,6 @@ table {
   text-align: center;
 }
 
-form section {
-  display: flex;
-  justify-content: center;
-  width: 500px;
-}
-
-form .btn {
-  background-color: #379683;
-  color: #EDF5E1;
-  margin-top: 5px;
-}
-
 tbody {
   background-color: #EDF5E1;
   color: #379683;
