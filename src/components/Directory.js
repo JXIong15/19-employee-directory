@@ -8,53 +8,36 @@ class Directory extends React.Component {
     state = {
         empList: [],
         filterEmp: [],
-        search: "",
         sortDirection: ""
     };
 
     componentDidMount = () => {
         API.genEmployees()
-            .then(res => this.setState({ empList: res.data.results }))
+            .then(res => {
+                this.setState({ empList: res.data.results });
+                this.setState({ filterEmp: res.data.results });
+            })
             .catch(err => console.log(err));
     }
 
-    // VALUE AND SEARCH ARE DIFF BY 1 INPUT. NEED FILTERED LIST TO DISPLAY
+
     handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
-        const value = event.target.value;
-        this.setState({ search: value });
-        // console.log(value)
-        console.log("State: " + this.state.search)
+        const searchTerm = event.target.value;
+        // this.setState({ search: value });
 
-        console.log("Value: " + value)
+        console.log("Value: " + searchTerm)
         console.log("-------------")
 
-        let { empList, search } = this.state;
-        let filterEmp = empList.filter((filtered) => {
-            return (
-                filtered.name.first.toLowerCase().includes(search.toLowerCase()) ||
-                filtered.name.last.toLowerCase().includes(search.toLowerCase()) ||
-                filtered.email.toLowerCase().includes(search.toLowerCase())
-            );
+
+        let filterEmp = this.state.empList.filter((filtered) => {
+
+            let values = Object.values(filtered).join("").toLowerCase();
+            return values.indexOf(searchTerm.toLowerCase()) !== -1
+
         });
-
-        if (filterEmp === []) {
-            alert("No employee matching that name or email.")
-        } else {
-            this.setState({ filterEmp: filterEmp });
-        }
-        // console.log(this.state.filterEmp);
-
-
-
+        this.setState({ filterEmp: filterEmp });
     };
-
-    // NEED TO NOT WORK ON ENTER/RETURN
-    clearSearch = (event) => {
-        event.preventDefault();
-        this.setState({ search: "" });
-        console.log("clear")
-    }
 
     // allows for ascending or descending list order
     order = (x, y) => {
@@ -81,7 +64,6 @@ class Directory extends React.Component {
                 default: return this.state.empList;
             }
         })
-
         this.setState({ empList: sortEmp });
     }
 
@@ -91,21 +73,11 @@ class Directory extends React.Component {
                 <h1><span>📖Employee Directory</span></h1>
                 <Search
                     handleInputChange={this.handleInputChange}
-                    search={this.state.search}
-                    clearSearch={this.clearSearch}
                 />
-                {/* if filterEmp is empty, display the whole empList. Else, display the filtered list */}
-                {this.state.filterEmp === [] ? (
-                    <Table
-                        empList={this.state.empList}
-                        sortBy={this.sortBy}
-                    />
-                ) : (
-                    <Table
-                        empList={this.state.filterEmp}
-                        sortBy={this.sortBy}
-                    />
-                )}
+                <Table
+                    empList={this.state.filterEmp}
+                    sortBy={this.sortBy}
+                />
                 <Footer />
             </div>
         )
