@@ -19,45 +19,59 @@ class Directory extends React.Component {
     }
 
 
+    handleInputChange = event => {
+        // Getting the value and name of the input which triggered the change
+        const value = event.target.value;
+        this.setState({ search: value });
+        
+        // Updating the input's state
+        this.setState({
+            search: value
+        });
+    };
+
 
     // DOES NOT WORK
     handleSearch = (event) => {
         event.preventDefault();
-        console.log("Search");
-        this.setState({ search: event.target.value }, () => {
-            let { empList, search } = this.state;
-            let filterEmp = empList.filter((filtered) => {
-                return (
-                    filtered.name.first.toLowerCase().includes(search.toLowerCase()) ||
-                    filtered.name.last.toLowerCase().includes(search.toLowerCase()) ||
-                    filtered.email.toLowerCase().includes(search.toLowerCase())
-                );
-            });
-            this.setState({ filterEmp });
-            console.log(filterEmp);
-        })
+
+        // const value = event.target.value;
+        // this.setState({ search: value });
+
+
+        // this.setState({ search: event.target.value }, () => {
+        //     let { empList, search } = this.state;
+        //     let filterEmp = empList.filter((filtered) => {
+        //         return (
+        //             filtered.name.first.toLowerCase().includes(search.toLowerCase()) ||
+        //             filtered.name.last.toLowerCase().includes(search.toLowerCase()) ||
+        //             filtered.email.toLowerCase().includes(search.toLowerCase())
+        //         );
+        //     });
+        //     this.setState({ filterEmp });
+        //     console.log(filterEmp);
+        // })
 
         console.log(this.state.search);
         this.setState({ search: "" });
     }
 
     // allows dor ascending or descending list order
-    order = (x,y) => {
+    order = (x, y) => {
         if (!(this.state.sortDirection === "asc")) {
-            this.setState({ sortDirection: "asc"});
+            this.setState({ sortDirection: "asc" });
             return (x > y ? 1 : -1)
         } else {
-            this.setState({ sortDirection: "desc"});
+            this.setState({ sortDirection: "desc" });
             return (x < y ? 1 : -1)
         }
     }
-
 
     sortBy = (key) => {
         let sortEmp = this.state.empList;
 
         // to sort by certain categories
-        sortEmp.sort((a,b) => {
+        sortEmp.sort((a, b) => {
             switch (key) {
                 case "first": return (this.order(a.name.first, b.name.first))
                 case "last": return (this.order(a.name.last, b.name.last));
@@ -68,8 +82,7 @@ class Directory extends React.Component {
             }
         })
 
-        this.setState({ empList: sortEmp })
-
+        this.setState({ empList: sortEmp });
     }
 
     render() {
@@ -77,13 +90,13 @@ class Directory extends React.Component {
             <div className="directory">
                 <h1><span>📖Employee Directory</span></h1>
                 <Search
-                    handleSearch={this.handleSearch}
-                    search={this.state.search}
+                    handleInputChange = {this.handleInputChange}
+                    handleSearch = {this.handleSearch}
+                    search = {this.state.search}
                 />
                 <Table
-                    empList={this.state.empList}
-                    // sortAlpha={this.sortAlpha}
-                    sortBy={this.sortBy}
+                    empList = {this.state.empList}
+                    sortBy = {this.sortBy}
                 />
                 <Footer />
             </div>

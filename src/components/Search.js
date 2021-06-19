@@ -7,9 +7,9 @@ function Search(props) {
         <p>Search for an employee by name or email.</p>
         <input 
           type="text" 
-          placeholder="Employee" 
-          // onChange={props.handleInputChange} 
-          // value={props.search}
+          placeholder="Employee"
+          onChange={props.handleInputChange}
+          value={props.search}
         />
         <input 
           className="submit" 
