@@ -8,14 +8,7 @@ class Directory extends React.Component {
     state = {
         empList: [],
         filterEmp: [],
-        search: "",
-        categories: [
-            {name: "first"},
-            {name: "last"},
-            {name: "email"},
-            {name: "phone"},
-            {name: "address"}
-        ]
+        search: ""
     };
 
     componentDidMount = () => {
@@ -47,11 +40,16 @@ class Directory extends React.Component {
         this.setState({ search: "" });
     }
 
-    sortBy = () => {
+    sortBy = (key) => {
         console.log("sort")
         let sortEmp = this.state.empList;
+
+        // to sort by certain categories
         sortEmp.sort((a,b) => {
-            return (a.name.first > b.name.first ? 1 : -1)
+            switch (key) {
+                case "first": return (a.name.first > b.name.first ? 1 : -1);
+                case "last": return (a.name.last > b.name.last ? 1 : -1);
+            }
         })
 
         this.setState({ empList: sortEmp })
