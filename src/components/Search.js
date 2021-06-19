@@ -12,12 +12,7 @@ function Search(props) {
           onChange={props.handleInputChange}
           value={props.search}
         />
-        <input 
-          className="submit" 
-          type="submit" 
-          value="Clear"
-          onClick={props.clearSearch}
-        />
+        <button className="btn" onClick={props.clearSearch} type="button">Clear</button>
         </section>
       </form>
     </div>

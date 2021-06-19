@@ -27,7 +27,7 @@ class Directory extends React.Component {
         console.log("State: " + this.state.search)
 
         console.log("Value: " + value)
-
+        console.log("-------------")
 
         let { empList, search } = this.state;
         let filterEmp = empList.filter((filtered) => {
@@ -40,7 +40,7 @@ class Directory extends React.Component {
 
         if (filterEmp === []) {
             alert("No employee matching that name or email.")
-        } else {        
+        } else {
             this.setState({ filterEmp: filterEmp });
         }
         // console.log(this.state.filterEmp);
@@ -49,9 +49,11 @@ class Directory extends React.Component {
 
     };
 
-    clearSearch = () => {
+    // NEED TO NOT WORK ON ENTER/RETURN
+    clearSearch = (event) => {
+        event.preventDefault();
         this.setState({ search: "" });
-
+        console.log("clear")
     }
 
     // allows for ascending or descending list order
@@ -92,10 +94,18 @@ class Directory extends React.Component {
                     search={this.state.search}
                     clearSearch={this.clearSearch}
                 />
-                <Table
-                    empList={this.state.empList}
-                    sortBy={this.sortBy}
-                />
+                {/* if filterEmp is empty, display the whole empList. Else, display the filtered list */}
+                {this.state.filterEmp === [] ? (
+                    <Table
+                        empList={this.state.empList}
+                        sortBy={this.sortBy}
+                    />
+                ) : (
+                    <Table
+                        empList={this.state.filterEmp}
+                        sortBy={this.sortBy}
+                    />
+                )}
                 <Footer />
             </div>
         )
