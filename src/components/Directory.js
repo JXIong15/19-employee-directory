@@ -43,7 +43,7 @@ class Directory extends React.Component {
     }
 
     sortBy = (key) => {
-        let sortEmp = this.state.empList;
+        let sortEmp = this.state.filterEmp;
 
         // to sort by certain categories
         sortEmp.sort((a, b) => {
@@ -56,7 +56,7 @@ class Directory extends React.Component {
                 default: return this.state.empList;
             }
         })
-        this.setState({ empList: sortEmp });
+        this.setState({ filterEmp: sortEmp });
     }
 
     render() {
